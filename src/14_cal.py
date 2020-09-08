@@ -29,11 +29,42 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import datetime, date
 
-#year= int(input('Please enter the year: \n'))
-#month= 2020
-#int(input('Please enter the month: \n'))
-#print(month)
 
-print(calendar.month(2020, 2))
+'''
+year= (input('Please enter the year: \n'))
+month= (input('Please enter the month: \n'))
+
+y = int(year)
+m = int(month)
+
+def cal(*args):
+  return calendar.month(*args)
+
+print(cal(y,m))
+
+'''
+
+m= datetime.today().month
+y= datetime.today().year
+
+input_len = len(sys.argv)
+
+if input_len == 1:
+  print(calendar.month(y,m))
+
+if input_len == 2:
+  month = int(sys.argv[1])
+  if month > 12 or month < 1:
+    print('This month does not exist')
+  else:
+    print(calendar.month(y,month))
+
+if input_len == 3:
+  month = int(sys.argv[1])
+  year = int(sys.argv[2])
+  if month > 12 or month < 1 or year > y:
+    print('This time does not exist')
+  else:
+    print(calendar.month(year,month))
